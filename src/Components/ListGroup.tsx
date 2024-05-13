@@ -1,17 +1,27 @@
-import { Fragment } from "react/jsx-runtime";
-
+// import { Fragment } from "react/jsx-runtime";
+import { MouseEvent } from "react";
 function ListGroup() {
+  const cities = ["New York", "San Francisco", "Tokyo", "London", "Mumbai"];
+  let selectedIndex = -1;
+  const handleCick = (event: MouseEvent) => console.log(event);
   return (
-    <Fragment>
-      <h1>List</h1>
+    <>
+      <h1>Cities</h1>
+      {cities.length == 0 && <p>Sorry ,No citites are there</p>}
       <ul className="list-group">
-        <li className="list-group-item">An item</li>
-        <li className="list-group-item">A second item</li>
-        <li className="list-group-item">A third item</li>
-        <li className="list-group-item">A fourth item</li>
-        <li className="list-group-item">And a fifth one</li>
+        {cities.map((city, index) => (
+          <li
+            className={
+              selectedIndex == index ? "listgroud active" : "listgroup"
+            }
+            onClick={handleCick}
+            key={city}
+          >
+            {city}
+          </li>
+        ))}
       </ul>
-    </Fragment>
+    </>
   );
 }
 
